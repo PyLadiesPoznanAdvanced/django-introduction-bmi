@@ -15,4 +15,3 @@ urlpatterns = [
     url(r'^$', view_main_bmi),                 # uruchamianie widoku przy starcie projektu
     url(r'^bmi_calculator/', include('bmi_calculator.urls', namespace='bmi_calculator')),
 ]
-

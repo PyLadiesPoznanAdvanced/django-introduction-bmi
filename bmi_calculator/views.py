@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 
 
-def get_defoult_contex():
+def get_default_contex():
     """Funkcja zwracająca podstawowy kontekst. """
     return {"sex": ("kobieta", "męszczyzna")}
 
@@ -11,22 +11,17 @@ def view_main_bmi(request):
     return render(
         request,
         "bmi_calculator/bmi.html",
-        get_defoult_contex()
+        get_default_contex()
     )
 
 
 def view_count_bmi(request):
     """Funkcja służąca do obliczeń wartości bmi na podstawie wartości podanych przez użytkownika."""
 
-    # próba pobrania danych wprowadzonych przez użytkownika
-    try:
-        sex = request.POST["chosen_sex"]
-        height = float(request.POST["height"])
-        weight = float(request.POST["weight"])
-
-    # przekierowanie do poprzedniego url w przypadku wystąpienia wyjątku
-    except (KeyError, ValueError):
-        return HttpResponseRedirect("/bmi_calculator/")
+    # pobranie danych wprowadzonych przez użytkownika
+    sex = request.POST["chosen_sex"]
+    height = float(request.POST["height"])
+    weight = float(request.POST["weight"])
 
     # właściwe obliczanie bmi
     bmi_result = round(weight / height ** 2, 2)
@@ -57,12 +52,15 @@ def view_count_bmi(request):
     request.session["bmi_result"] = bmi_result
     request.session["weight_type"] = weight_type
 
+    # Always return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
     return HttpResponseRedirect("/bmi_calculator/result/")
 
 
 def view_bmi_result(request):
     """Widok zawierający obliczony wynik bmi dla użytkownika."""
-    context = get_defoult_contex()
+    context = get_default_contex()
     context.update({
         "bmi_result": request.session["bmi_result"],
         "weight_type": request.session["weight_type"]
