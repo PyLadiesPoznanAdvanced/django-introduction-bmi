@@ -1,0 +1,37 @@
+{% extends "calculators/base.html" %}
+
+
+{% block bmi %}
+
+    <form action="{% url 'calculators:count_bmi' %}" method="post">
+    {% csrf_token %}
+
+    <div id="bmi_form" style="text-align:center; background-color:lightgreen; background-size: 50% 80%;">
+        <h3>Kalkulator BMI</h3>
+
+        <p>Podaj swoją płeć.</p>
+        <select name="chosen_sex">
+           {% for one_sex in sex %}
+               <option value="{{one_sex}}">{{one_sex}}</option>
+           {% endfor %}
+        </select>
+
+        <p>Wprowadź dane dotyczące Twojego wzrostu (wzrost w metrach np 1.85).</p>
+        <input type="text" name="height" value="" size="10" style="text-align:center;">
+		<br>
+
+        <p>Wprowadź dane dotyczące Twojej wagi w kilogamach (np, 70.3).</p>
+        <input type="text" name="weight" value="" size="10" style="text-align:center;">
+		<br>
+
+        <p><input type="submit" value="Oblicz BMI"></p>
+        <br>
+    </div>
+    </form>
+
+    {% block bmi_results %}
+    {% endblock %}
+
+{% endblock %}
+
+

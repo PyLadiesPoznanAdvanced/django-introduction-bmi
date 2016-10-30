@@ -1,0 +1,105 @@
+Witamy :-)
+
+
+Przed Tobą opis trzech zadań przygotowanych do wykonania
+w ramach pierwszych zajeć wprowadzających do django.
+
+Aby wykonać zadania należy w pierwszej kolejności ściągnąć repozytorium zawierające 
+przykładowy projekt napisany w django i zapoznać się z jego zawartością.
+
+github.com/PyLadiesPoznanAdvanced/django-introduction-bmi
+
+
+
+Zadanie 1
+
+Dotychczasowy wynik obliczeń indeksu BMI pod adresem 
+http://127.0.0.1:8000/calculators/bmi_result/  
+prezentowany jest np jako tekst:
+
+"Twój indeks BMI wynosi 20,08 - normalna waga"
+
+Zamień ten wynik na inny, np:
+
+"Przy wzroście 167 cm i wadze 89 kg twój indeks BMI wynosi 20,08 - normalna waga."
+
+Potrzebne zmiany należy wprowadzić w plikach:
+django-introduction-bmi/calculators/views.py
+django-introduction-bmi/calculators/templates/calculators/bmi_results.html
+
+
+
+Zadanie 2
+
+W naszej aplikacji do obliczania indeksu BMI jest błąd.
+Kalkulator BMI działa poprawnie tylko jeśli jako wzrost i wagę podamy 
+liczby zmiennoprzecinkowe zawierające ".", np wzrost 1.78, waga 89.2 (system amerykański).
+W takim przypadku program jest w stanie utworzyć obiekt float 
+z podanych przez użytkownika danych w postaci obiektów string. 
+
+W przypadku podania danych zawierających ",", lub wpisując cokolwiek czego program
+nie będzie wstanie zamienić na obiekt float pojawia się wyjątek ValueError, 
+który powoduje zaprzestanie pracy programu.
+
+Należy naprawić wspomniany błąd, poprzez wprowadzenie "testu" czy program jest w stanie 
+zamienić wprowadzone przez użytkownika dane wzrostu i wagi na obiekty typu float.
+W przypadku jeżeli program nie będzie wstanie tego zrobić, powinnien 
+wyświetlić stosowny komunikat dla użytkownika, umożliwiając jednocześnie ponowne wprowadzenie danych. 
+
+Potrzebne zmiany należy wprowadzić w plikach:
+django-introduction-bmi/calculators/views.py
+django-introduction-bmi/calculators/templates/calculators/bmi.html
+
+podpowiedź - jak wygląda "if" w htnml:
+{% if bmi_error == True %} 
+{% elif bmi_error == False %} 
+{% else %} 
+{% endif %} 
+
+
+Zadanie 3
+
+Po uruchomieniu programu oraz wejściu pod adres http://127.0.0.1:8000
+zostajemy automatycznie przekierowani pod adres http://127.0.0.1:8000/calculators/bmi_calculator/.
+
+Jest to zabieg celowy. Bez wprowadzenia wspomnianego przekierowania program 
+zwracałby błąd 404 po wejściu na adres http://127.0.0.1:8000.
+Taki błąd pojawia się np. po wejściu pod adres http://127.0.0.1:8000/calculators/.
+
+Taka sytuacja ma sens jeżeli aplikacja ma służyć jedynie do obliczania indeksu BMI.
+Jeżeli jednak chcielibyśmy w przyszłości wprowadzić dodatkową funkcjonalność 
+(np. kalkulator kalorii pożywienia)
+należy dać użytkownikowi możliwośc przejścia z jednego kalkulatora do drugiego.
+
+Dla adresu http://127.0.0.1:8000/calculators/ utwórz stronę, na której użytkownik
+będzie miał 2 przyciski umożliwiające wybór kalkulatora: bmi lub kalkulatora kalorii.
+Przyciski powinny przekierowywać użytkownika do odpowiednieko kalkulatora.
+Przyciski powninny być widoczne po wejściu na strone z kalkulatorem bmi lub kalkulatorem kalorii.
+
+Kalkulator bmi jest już gotowy. 
+Natomiast jako kalkulator kalorii przygotuj pod adresem
+http://127.0.0.1:8000/calculators/calories_calculator/
+zwykły tekst informujący o przejściu na stronę kalkulatora 
+(np.: "Wszedłeś na stronę kalkulatora kalorii w pożywieniu").
+
+W zadaniu nie chodzi o tworzenia całego nowego kalkulatora a 
+jedynie utworzenie odpowiedniego adresu url, widoku oraz html!
+
+Potrzebne zmiany należy wprowadzić w plikach:
+django-introduction-bmi/django-introduction-bmi/urls.py
+django-introduction-bmi/calculators/urls.py.py
+django-introduction-bmi/calculators/views.py
+
+django-introduction-bmi/calculators/templates/bmi_calculator/base.html
+django-introduction-bmi/calculators/templates/bmi_calculator/bmi.html
+django-introduction-bmi/calculators/templates/bmi_calculator/calories.html
+
+Powodzenia !
+
+
+
+
+
+
+
+

@@ -8,10 +8,16 @@ from django.shortcuts import HttpResponseRedirect
 
 def view_main_bmi(request):
     """ Funkcja przekierowująca do głównego url aplikacji bmi."""
-    return HttpResponseRedirect("/bmi_calculator/")
+    return HttpResponseRedirect("calculators/bmi_calculator/")
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),          # panel admina
-    url(r'^$', view_main_bmi),                 # uruchamianie widoku przy starcie projektu
-    url(r'^bmi_calculator/', include('bmi_calculator.urls', namespace='bmi_calculator')),
+
+    # panel admina
+    url(r'^admin/', admin.site.urls),
+
+    # uruchamianie widoku przy starcie projektu
+    url(r'^$', view_main_bmi),
+
+    # przypisanie adresów url z aplikacji calculators
+    url(r'^calculators/', include('calculators.urls', namespace='calculators')),
 ]
