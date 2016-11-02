@@ -51,8 +51,8 @@ django-introduction-bmi/calculators/views.py
 django-introduction-bmi/calculators/templates/calculators/bmi.html
 
 podpowiedź - jak wygląda "if" w htnml:
-{% if bmi_error == True %} 
-{% elif bmi_error == False %} 
+{% if bmi_error == "ok" %} 
+{% elif bmi_error == "error" %} 
 {% else %} 
 {% endif %} 
 
@@ -80,7 +80,7 @@ Kalkulator bmi jest już gotowy.
 Natomiast jako kalkulator kalorii przygotuj pod adresem
 http://127.0.0.1:8000/calculators/calories_calculator/
 zwykły tekst informujący o przejściu na stronę kalkulatora 
-(np.: "Wszedłeś na stronę kalkulatora kalorii w pożywieniu").
+(np.: "Jesteś na stronie kalkulatora kalorii w pożywieniu").
 
 W zadaniu nie chodzi o tworzenia całego nowego kalkulatora a 
 jedynie utworzenie odpowiedniego adresu url, widoku oraz html!
@@ -95,11 +95,3 @@ django-introduction-bmi/calculators/templates/bmi_calculator/bmi.html
 django-introduction-bmi/calculators/templates/bmi_calculator/calories.html
 
 Powodzenia !
-
-
-
-
-
-
-
-

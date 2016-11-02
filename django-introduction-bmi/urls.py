@@ -12,11 +12,12 @@ def view_main_bmi(request):
 
 urlpatterns = [
 
-    # panel admina
-    url(r'^admin/', admin.site.urls),
 
     # uruchamianie widoku przy starcie projektu
     url(r'^$', view_main_bmi),
+
+    # panel admina
+    url(r'^admin/', admin.site.urls),
 
     # przypisanie adresów url z aplikacji calculators
     url(r'^calculators/', include('calculators.urls', namespace='calculators')),
