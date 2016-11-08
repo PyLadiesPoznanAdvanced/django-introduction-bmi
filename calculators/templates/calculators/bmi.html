@@ -1,7 +1,7 @@
 {% extends "calculators/base.html" %}
 
 
-{% block bmi %}
+{% block calc %}
 
     <form action="{% url 'calculators:count_bmi' %}" method="post">
     {% csrf_token %}
@@ -20,7 +20,7 @@
         <input type="text" name="height" value="" size="10" style="text-align:center;">
 		<br>
 
-        <p>Wprowadź dane dotyczące Twojej wagi w kilogamach (np, 70.3).</p>
+        <p>Wprowadź dane dotyczące Twojej wagi w kilogramach (np, 70.3).</p>
         <input type="text" name="weight" value="" size="10" style="text-align:center;">
 		<br>
 
@@ -28,6 +28,14 @@
         <br>
     </div>
     </form>
+
+    <br>
+    <div id="error" style="text-align:center; background-color:orangered;">
+        {% if error %}
+            {{ error }}
+        {% endif %}
+    </div>
+    <br>
 
     {% block bmi_results %}
     {% endblock %}

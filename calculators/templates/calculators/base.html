@@ -11,8 +11,18 @@
 			<h2>PyLadies Django-introduction </h2>
 		</div>
 
+        <form action="{% url 'calculators:calc_choose' %}" method="post">
+        {% csrf_token %}
 
-        {% block bmi %}
+        <div id="bmi_form" style="text-align:center; background-color:lightblue; background-size: 50% 80%;">
+            <br>
+            <p><input type="submit" name="bmi" value="Kalkulator BMI"></p>
+            <p><input type="submit" name="calories" value="Kalkulator Kalorii"></p>
+
+        </div>
+        </form>
+
+        {% block calc %}
         {% endblock %}
 
 
