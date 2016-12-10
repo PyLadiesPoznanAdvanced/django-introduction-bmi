@@ -1,13 +1,13 @@
 {% extends "calculators/base.html" %}
 
-
 {% block calc %}
 
     <form action="{% url 'calculators:count_bmi' %}" method="post">
     {% csrf_token %}
 
-    <div id="bmi_form" style="text-align:center; background-color:lightgreen; background-size: 50% 80%;">
-        <h3>Kalkulator BMI</h3>
+    <div id="bmi_form" >
+        <br>
+        <h3><strong>Kalkulator BMI</strong></h3>
 
         <p>Podaj swoją płeć.</p>
         <select name="chosen_sex">
@@ -17,24 +17,24 @@
         </select>
 
         <p>Wprowadź dane dotyczące Twojego wzrostu (wzrost w metrach np 1.85).</p>
-        <input type="text" name="height" value="" size="10" style="text-align:center;">
+        <input type="text" name="height" value="" size="10" >
 		<br>
 
         <p>Wprowadź dane dotyczące Twojej wagi w kilogramach (np, 70.3).</p>
-        <input type="text" name="weight" value="" size="10" style="text-align:center;">
-		<br>
+        <input type="text" name="weight" value="" size="10" >
+		<br><br>
 
-        <p><input type="submit" value="Oblicz BMI"></p>
-        <br>
+        <button type="submit" class="btn btn-success">Oblicz BMI</button>
+        <br><br>
     </div>
     </form>
 
     <br>
-    <div id="error" style="text-align:center; background-color:orangered;">
-        {% if error %}
-            {{ error }}
-        {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        <strong>{{ error }}</strong>
     </div>
+    {% endif %}
     <br>
 
     {% block bmi_results %}

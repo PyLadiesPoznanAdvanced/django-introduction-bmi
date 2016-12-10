@@ -3,34 +3,45 @@
 
     <head>
         <title>django-introduction-bmi</title>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'calculators/style.css' %}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-
     <body>
-
-        <div id="header" style="text-align:center; background-color:lightgrey;">
-			<h2>PyLadies Django-introduction </h2>
+		<header>
+        <div id="header">
+            <img src="{% static 'calculators/pyladies.jpg' %}" class="img-circle"
+                 alt="image here" width="304" height="236">
+			<h2><i>PyLadies Django-introduction </i></h2>
 		</div>
-
-        <form action="{% url 'calculators:calc_choose' %}" method="post">
+        </header>
+        
+		<form action="{% url 'calculators:calc_choose' %}" method="post">
         {% csrf_token %}
 
-        <div id="bmi_form" style="text-align:center; background-color:lightblue; background-size: 50% 80%;">
+        <div id="calculators_form" >
             <br>
-            <p><input type="submit" name="bmi" value="Kalkulator BMI"></p>
-            <p><input type="submit" name="calories" value="Kalkulator Kalorii"></p>
-
+                <button type="submit" name="bmi" class="btn btn-primary">Kalkulator BMI</button>
+                <button type="submit" name="calories" class="btn btn-primary">Kalkulator kalorii</button>
+            <br>
         </div>
         </form>
 
         {% block calc %}
         {% endblock %}
 
-
-		<div id="footer" style="text-align:center; background-color:lightgrey;">
+        <footer>
+		<div id="footer">
 		<address >
             <b>Created by PyLadies Poznan </b>
         </address>
 		</div>
+    	</footer>
 
     </body>
 </html>

@@ -1,0 +1,30 @@
+/*To jest komentarz. */
+
+body {
+    text-align:center;
+    position: relative;
+    width: 60%;
+    left: 20%;
+}
+
+header, footer {
+    background-color:whitesmoke;
+}
+
+#calculators_form {
+    background-color:lightblue;
+}
+
+#bmi_form {
+    background-color:lightgreen;
+}
+
+#bmi_result {
+    background-color:white;
+}
+
+#calorie_calculator {
+    background-color:yellow;
+}
+
+
