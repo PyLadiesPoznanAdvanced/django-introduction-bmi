@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 
+from .models import Person
 
 def calculators(request):
     """Widok umożliwiający wybór kalkulatora."""
@@ -70,30 +71,11 @@ def view_count_bmi(request):
     # usunięcie ze słownika request.session klucza "error"
     request.session.delete("error")
 
-    # obliczanie bmi
-    bmi_result = round(weight / height ** 2, 2)
+    # utworzenie obiektu clasy Person
+    person = Person(sex=sex, weight=weight, height=height)
 
-    # sprawdzenie kategori wagowej
-    weight_type = None
-
-    if sex == "kobieta":
-        if bmi_result <= 17.5:
-            weight_type = "niedowaga"
-        elif 17.5 < bmi_result <= 22.5:
-            weight_type = "normalna waga"
-        elif 22.5 < bmi_result <= 27.5:
-            weight_type = "nadwaga"
-        else:
-            weight_type = "otyłość"
-    else:
-        if bmi_result <= 20:
-            weight_type = "niedowaga"
-        elif 20 < bmi_result <= 25:
-            weight_type = "normalna waga"
-        elif 25 < bmi_result <= 30:
-            weight_type = "nadwaga"
-        else:
-            weight_type = "otyłość"
+    # obliczenie indeksu bmi oraz kategorii wagowej
+    bmi_result, weight_type = person.get_bmi()
 
     # dodanie obliczonych wartości bmi oraz
     # kategori wagowej do słownika request.session
